@@ -13,8 +13,8 @@ node('k8s-node') {
     }
 
     stage('deploy'){
-    git 'https://github.com/shivi-bit/node-repo.git'
-    sh  'set +e \\\'s/{{TAG}}/\\\'${BUILD_NUMBER}\\\'/G\\\' deployment.yml'
-    kubectl 'apply -f deployment.yml -n node-application'
+        git 'https://github.com/shivi-bit/node-repo.git'
+        sh 'sed -i \'s/latest/\'${BUILD_NUMBER}\'/g\' deployment.yml'
+        sh 'kubectl apply -f deployment.yml -n node-application'
     }
 }
