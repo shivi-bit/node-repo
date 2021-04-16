@@ -1,4 +1,4 @@
-node('aws-linux') {
+node('k8s-node') {
 
     stage('clone') {
         git 'https://github.com/shivi-bit/node-repo.git' 
@@ -11,9 +11,6 @@ node('aws-linux') {
     stage('publish') {
         sh 'sudo docker push  shivangani/my-node-app:${BUILD_NUMBER} '
     }
-}
-
-node('k8s-node') {
 
     stage('deploy'){
     git 'https://github.com/shivi-bit/node-repo.git'
